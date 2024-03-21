@@ -9,37 +9,33 @@ const data = [
   {
     id: 1,
     ques: 'How do i start using this service?',
-    ans: `All you need is a web3 wallet. connect your wallet and start uploading your files and documents`,
+    ans: `All you need is a web3 wallet. connect your wallet and select the type of services you desire either as a user or a service provider`,
   },
   {
     id: 2,
-    ques: 'What type of files do you support?',
-    ans: `We suppolrt all types olf files. Documents, Audiofiles, Video files, portable documemts, achive or compressed files. just mention them ].`,
+    ques: 'How can I ensure that my data is adequately protected with Data Insurance?',
+    ans: `To ensure that your data is adequately protected with Data Insurance, it's essential to regularly back up your data, implement robust cybersecurity measures (e.g., encryption, firewalls), and follow best practices for data storage and management. Additionally, review your insurance policy to ensure it meets your specific needs and requirements.`,
   },
+  
   {
     id: 3,
-    ques: 'Do you support directory upload?',
-    ans: `We currently support but single file upload and directory upload also known as folder upload.`,
+    ques: 'What risks are included in Data Insurance coverage?',
+    ans: `Data Insurance typically covers risks such as data loss due to hardware failure, accidental deletion, cyber-attacks (e.g., ransomware), natural disasters (e.g., fire, flood), and theft.`,
   },
   {
     id: 4,
-    ques: 'Is this service free?',
-    ans: `This service is free for as much storage as you want. Thanks to Protocol lab. IPFS / Filecoin made this decentralized storege possib;le.`,
+    ques: 'How does the claims process work for Data Insurance?',
+    ans: `The claims process for Data Insurance typically involves notifying the insurance provider of the data loss or damage, providing relevant documentation and evidence, and working with the insurer to assess the claim and determine coverage.`,
   },
   {
     id: 5,
-    ques: 'How do I upgrade the storage capacity of my hosting plan?',
-    ans: `You will contact our customer support for that.`,
+    ques: 'Are there any exclusions or limitations to Data Insurance coverage?',
+    ans: `Data Insurance policies may have exclusions or limitations, such as pre-existing data loss, intentional acts, or failure to implement adequate data security measures. It's essential to review your policy carefully to understand any exclusions or limitations.`,
   },
   {
     id: 6,
-    ques: 'Can i ever look for my file?',
-    ans: `Decentralized files cannot be brought down or missing. You files are stored on multiples nodes servers. All this servers are located in diffrent locations all over the globe. be rest assured that your files cannot just go down`,
-  },
-  {
-    id: 7,
-    ques: 'Where can i know more about this KEZAYYA?',
-    ans: `We are putting up a comprehensive "Getting started documentamtion". meanwhile engage our support team on discord and do follow us on Twitter.`,
+    ques: 'What types of data are covered by Data Insurance?',
+    ans: `Data Insurance typically covers a wide range of digital assets, including but not limited to documents, databases, multimedia files, software, and user-generated content.`,
   },
 ];
 
@@ -47,12 +43,12 @@ const masonryOptions = { originTop: true };
 
 const Faq = () => {
   return (
-    <Box as="section" id="faq" sx={styles.section}>
+    <Box as="section" id="faq" sx={styles.section} >
       <Container>
         <SectionHeading
           sx={styles.heading}
           slogan="Get yours question answer"
-          title="Frequantly asked question"
+          title="Frequently asked question"
         />
         <Masonry options={masonryOptions} sx={styles.grid}>
           {data.map((item) => {

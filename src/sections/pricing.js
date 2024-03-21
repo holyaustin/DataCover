@@ -11,9 +11,10 @@ const data = [
     id: 1,
     title: 'Startup Pack',
     subtitle: 'For the startup team who work with new come data stack',
-    price: 25.99,
+    price: 5.99,
     isRecommended: false,
     buttonText: 'Start Free Trial',
+    /**
     features: [
       {
         id: 1,
@@ -41,14 +42,16 @@ const data = [
         title: `Download and print courses and exercises in PDF`,
       },
     ],
+    */
   },
   {
     id: 2,
     title: 'Premium Pack',
     subtitle: 'For the organization who work with new come data stack',
-    price: 29.99,
+    price: 9.99,
     isRecommended: true,
     buttonText: 'Start Free Trial',
+    /**
     features: [
       {
         id: 1,
@@ -76,14 +79,16 @@ const data = [
         title: `Download and print courses and exercises in PDF`,
       },
     ],
+    */
   },
   {
     id: 3,
     title: 'Ultimate Pack',
     subtitle: 'For the ultimate company team who work with new come data stack',
-    price: 34.99,
+    price: 14.99,
     isRecommended: false,
     buttonText: 'Start Free Trial',
+    /**
     features: [
       {
         id: 1,
@@ -111,6 +116,7 @@ const data = [
         title: `Download and print courses and exercises in PDF`,
       },
     ],
+     */
   },
 ];
 
@@ -150,7 +156,7 @@ const Pricing = () => {
       <Container sx={styles.container}>
         <SectionHeading
           sx={styles.heading}
-          slogan="Deal for your business"
+          slogan="Deal for your data"
           title="Meet our pricing plan that suit you"
         />
         <Slider sx={styles.grid} {...settings}>
@@ -167,6 +173,7 @@ export default Pricing;
 
 const styles = {
   section: {
+    backgroundColor: 'primary',
     pt: [6],
     pb: [12, null, null, 15, 17],
   },

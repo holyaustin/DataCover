@@ -38,7 +38,7 @@ contract FileNFT is ERC721URIStorage {
         address account
     );
 
-    constructor() ERC721("Kezayya", "KEZAYYA") {
+    constructor() ERC721("datacover", "datacover") {
     owner = payable(msg.sender);
       monthly_value = 100000;
     }

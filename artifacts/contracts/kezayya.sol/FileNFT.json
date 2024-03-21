@@ -1,7 +1,7 @@
 {
   "_format": "hh-sol-artifact-1",
   "contractName": "FileNFT",
-  "sourceName": "contracts/kezayya.sol",
+  "sourceName": "contracts/datacover.sol",
   "abi": [
     {
       "inputs": [],

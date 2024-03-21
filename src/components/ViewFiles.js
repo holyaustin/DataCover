@@ -11,7 +11,7 @@ import { rgba } from 'polished';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 
-import fileNFT from "../../artifacts/contracts/kezayya.sol/FileNFT.json";
+import fileNFT from "../../artifacts/contracts/datacover.sol/FileNFT.json";
 import { fileShareAddress } from "../../config";
 
 export default function ViewFiles() {

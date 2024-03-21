@@ -11,7 +11,7 @@ import { ethers } from "ethers";
 import Web3Modal from "web3modal";
 import { rgba } from 'polished';
 import 'dotenv/config';
-import fileNFT from "../../artifacts/contracts/kezayya.sol/FileNFT.json";
+import fileNFT from "../../artifacts/contracts/datacover.sol/FileNFT.json";
 import { fileShareAddress } from "../../config";
 const APIKEY = [process.env.NFT_STORAGE_API_KEY];
 

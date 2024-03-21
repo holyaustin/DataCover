@@ -8,7 +8,7 @@ import axios from "axios";
 import { useRouter } from 'next/router'
 import Web3Modal from "web3modal";
 
-import fileNFT from "../../artifacts/contracts/kezayya.sol/FileNFT.json";
+import fileNFT from "../../artifacts/contracts/datacover.sol/FileNFT.json";
 import { fileShareAddress } from "../../config";
 
 export default function ComingSoon() {

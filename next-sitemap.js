@@ -1,5 +1,5 @@
 module.exports = {
-  siteUrl: 'https://kezayya.vercel.app',
+  siteUrl: 'https://datacover.vercel.app',
   generateRobotsTxt: true,
   // optional
   // robotsTxtOptions: {

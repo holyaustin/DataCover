@@ -1,4 +1,4 @@
-/** @jsx jsx */
+
 import { jsx, Button, Text } from 'theme-ui';
 import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
 import { Fragment } from 'react';

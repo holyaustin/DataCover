@@ -3,13 +3,13 @@
 import { jsx, Box, Container, Grid, Button, Heading, Text } from 'theme-ui';
 import { IoIosCheckmarkCircle } from 'react-icons/io';
 import Image from 'components/image';
-import support from 'assets/images/support.png';
+import support from "../assets/images/support.png";
 
 const list = [
-  'Medical and vision',
-  'Life insurance',
-  'HSAs and FSAs',
-  'Commuter benefits',
+  'Data Owners',
+  'Storage Providers',
+  'Risk Analyst',
+  'Developers',
 ];
 
 const CustomerSupport = () => {
@@ -18,7 +18,7 @@ const CustomerSupport = () => {
       <Container>
         <Box sx={styles.grid}>
           <Box sx={styles.illustration}>
-            <Image src={support} loading="lazy" alt="support" />
+            <Image src="/images/support.png" loading="lazy" alt="support" />
           </Box>
           <Box sx={styles.content}>
             <Heading sx={styles.title}>
@@ -26,9 +26,7 @@ const CustomerSupport = () => {
               satisfaction.
             </Heading>
             <Text as="p" sx={styles.summary}>
-              Get your tests delivered at let home collect sample from the
-              victory of the managements that supplies best design system
-              guidelines ever.
+            Have questions about your policy? Need to file a claim? Our dedicated Customer Support team is available 24/7 to provide expert assistance and guidance. Whether you prefer to chat online, give us a call, or send an email, we're always here to ensure your peace of mind. Your satisfaction is our top priority – contact us today and experience the difference with our personalized support!".
             </Text>
 
             <Grid sx={styles.list} as="ul">
@@ -53,6 +51,7 @@ export default CustomerSupport;
 
 const styles = {
   section: {
+    
     pt: [8, null, null, 6, null, 14, 16],
     pb: [null, null, null, 8, 0],
   },

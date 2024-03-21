@@ -8,22 +8,25 @@ export default [
     label: 'Services',
   },
   {
+    path: 'pricing',
+    label: 'Pricing',
+  },
+  {
     path: 'features',
     label: 'Features',
+  },
+
+  {
+    path: 'support',
+    label: 'Support',
   },
   {
     path: 'faq',
     label: 'Faq',
   },
-  {/**
-  {
-    path: 'pricing',
-    label: 'Pricing',
-  },
-  {
-    path: 'testimonials',
-    label: 'Testimonials',
-  },
+ 
+
+   {/**
   {
     path: 'blog',
     label: 'Blog',

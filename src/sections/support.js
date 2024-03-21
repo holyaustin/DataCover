@@ -9,24 +9,25 @@ import supportTeam from 'assets/images/support-team.png';
 
 export default function Support() {
   return (
-    <section id="support" sx={styles.section}>
+    <Box as="section" id="support" sx={styles.section}>
       <Container>
         <SectionHeading
           sx={styles.heading}
           title="Meet our support team who always work hardly behind the scenes"
-          description="Focus only on the meaning, we take care of the design. As soon as the meeting end you can export in one click into your preferred."
+          description="Focus only on the meaning, we take care of the development of this cutting-edge insurance service on the Filecoin Blockchain. Our Support team also are ready to answer any type of question that related to insuring you files on DATA COVER."
         />
 
         <Box as="figure" sx={styles.thumbWrapper}>
-          <Image src={supportTeam} loading="lazy" alt="Support Team" />
+          <Image src='/images/support-team.png' loading="lazy" alt="Support Team" />
         </Box>
       </Container>
-    </section>
+    </Box>
   );
 }
 
 const styles = {
   section: {
+    
     pt: [8, null, null, null, 10, 14],
     pb: [0],
   },

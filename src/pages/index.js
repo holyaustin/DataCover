@@ -7,29 +7,33 @@ import Banner from 'sections/banner';
 import Services from 'sections/services';
 import UltimateFeatures from 'sections/ultimate-feature';
 import Faq from 'sections/faq';
+import Support from 'sections/support';
+import CustomerSupport from 'sections/customer-support';
+import Pricing from 'sections/pricing';
 // import PremiumFeature from 'sections/premium-feature';
-// import CustomerSupport from 'sections/customer-support';
-// import Pricing from 'sections/pricing';
 // import Testimonials from 'sections/testimonials';
 // import Blog from 'sections/blog';
-// import Support from 'sections/support';
+
 
 export default function IndexPage() {
   return (
     <ThemeProvider theme={theme}>
       <Layout>
         <SEO
-          title="Decentralized file storage and sharing platform"
-          description="Storage of files and media documents using web3 decentralized technology. sharing made easy with web3!"
+          title="Data Cover - FVM-based Data Insurance Service "
+          description="Decentralized Data Insurance Policies and services for Storage providers and user!"
         />
         <Banner />
         <Services />
+        <Pricing />
         <UltimateFeatures />
+        <CustomerSupport />
+        <Support />
         <Faq />
 {/**
  *      <PremiumFeature />
-        <CustomerSupport />
-        <Pricing />
+        
+       
         <Testimonials />
         <Blog />
         <Support />

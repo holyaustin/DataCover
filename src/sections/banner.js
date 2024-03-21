@@ -26,10 +26,10 @@ const Banner = () => {
       <Container>
         <Box sx={styles.grid}>
           <Box as="form" sx={styles.domainCard}>
-            <Heading>KEZAYYA</Heading>
-            <div style={{fontSize: '24px', marginRight: '0.5rem', fontWeight: 'bold'}}>
+            <Heading style={{fontWeight: 'bold', color: "purple", textAlign: "justify"}}>Insurance Cover</Heading>
+            <div style={{fontSize: '22px', marginRight: '0.5rem', fontWeight: 'bold', textAlign: "justify"}}>
               <p>
-              A new and secure way to store and share files and documents on the cloud using decentralized storage mechanism. Try it out!.
+              Data Insurance Cover - the smart choice for proactive risk management. With our flexible policies and reliable support, you can rest easy knowing that your data is protected against unforeseen events. Get Data Insurance Cover and secure your peace of mind today!.
               </p>
             </div>
             <ConnectWallet />
@@ -38,8 +38,8 @@ const Banner = () => {
               Start for free
             </Button>
  */}         
-            <Text as="p" sx={styles.note} style={{color:`red`, fontSize: '15px', marginRight: '0.5rem', fontWeight: 'bold'}}>
-            Don't be left out, Join this amazing web3 revolution..
+            <Text as="p" sx={styles.note} style={{color:`red`, fontSize: '18px', marginRight: '0.5rem', fontWeight: 'bold'}}>
+            Say goodbye to data worries and hello to peace of mind with Data Insurance Cover.
             </Text>
           </Box>
           <Box as="figure" sx={styles.illustration}>

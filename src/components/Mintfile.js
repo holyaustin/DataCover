@@ -12,7 +12,7 @@ import { rgba } from 'polished';
 import { Wallet, providers } from "ethers";
 
 import 'dotenv/config';
-import fileNFT from "../../artifacts/contracts/kezayya.sol/FileNFT.json";
+import fileNFT from "../../artifacts/contracts/datacover.sol/FileNFT.json";
 import { fileShareAddress } from "../../config";
 // const APIKEY = [process.env.NFT_STORAGE_API_KEY];
 const APIKEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDA4Zjc4ODAwMkUzZDAwNEIxMDI3NTFGMUQ0OTJlNmI1NjNFODE3NmMiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY1MzA1NjE4NzM4MCwibmFtZSI6InBlbnNpb25maSJ9.agI-2V-FeK_eVRAZ-T6KGGfE9ltWrTUQ7brFzzYVwdM";

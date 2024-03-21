@@ -15,38 +15,38 @@ const data = [
   {
     id: 1,
     icon: '/images/services/1.png',
-    title: 'censorship-resistant',
-    description: `you are not policed by anyone, no restrictions from government on what to store or how to use`,
+    title: 'Smart Contract Automation',
+    description: `Utilization of smart contracts on Filecoin FEVM for automated policy issuance, claims processing, and premium payments, ensuring transparency and efficiency.`,
   },
   {
     id: 2,
     icon: '/images/services/2.png',
-    title: 'Bolt Performance',
-    description: `File storage and sharing with the speed of Polygon PoS blockchain transaction. `,
+    title: 'Community Governance',
+    description: `Community-driven governance mechanisms allowing stakeholders to participate in policy decisions, premium adjustments, and risk management strategies.`,
   },
   {
     id: 3,
     icon: '/images/services/3.png',
     title: 'Secured',
-    description: `File are secured. You dont need to be worried about security of personal details. Private mode also available.`,
+    description: `File are secured. You don't need to be worried about security of personal details. Private mode also available.`,
   },
   {
     id: 4,
     icon: '/images/services/4.png',
-    title: 'decentralized',
-    description: `No more centralized storage where a server houses your file. Kezayya stores your file in a decentralized manner by many nodes. if one node fails, you dont need to panic because other nodes have your file.`,
+    title: 'Decentralized Insurance Policies',
+    description: `No more centralized storage where a server houses your file. Insurance policies specifically designed for users of decentralized storage solutions on Filecoin FEVM`,
   },
   {
     id: 5,
     icon: '/images/services/5.png',
     title: '5 Star Rating service',
-    description: `We offefr great service that is second to non. Good support system and more feature been unveiled`,
+    description: `We offer great service that is second to non. Good support system and more feature been unveiled`,
   },
   {
     id: 6,
     icon: '/images/services/6.png',
-    title: 'Users own data',
-    description: `All data stored are entirely owned and managed by users`,
+    title: 'Transparent Claim Verification',
+    description: `Transparent and auditable claim verification process facilitated by the immutability of blockchain records on Filecoin FEVM`,
   },
 ];
 

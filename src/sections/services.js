@@ -7,36 +7,36 @@ import { transform } from 'framer-motion';
 
 const services = [
   {
-    title: 'Word Documents Storage',
-    price: 'doc, docx, odt, etc'
+    title: 'data loss',
+    price: ''
   },
   {
-    title: 'Speadshee Documents Storage',
-    price: 'xls, xlsx, ods, etc'
+    title: 'theft',
+    price: ''
   },
   {
-    title: 'presentation Docunment Storage',
-    price: 'ppt, pptx, odp, etc',
+    title: 'corruption',
+    price: '',
   },
   {
-    title: 'Image file Storage',
-    price: 'gif, jpg, png, webp, etc',
+    title: 'cyber-attacks',
+    price: '',
   },
   {
-    title: 'Media file Storage',
-    price: 'mp4, avi, mp3, hevc, etc ',
+    title: 'All risk coverage',
+    price: '',
   },
   {
-    title: 'compressed file storage',
-    price: 'tar, zip, gzip, 7zip, rar, etc',
+    title: 'short term cover',
+    price: '',
   },
   {
-    title: 'portable file storage',
-    price: 'pdf, PDF/VT, PDF Healthcare, PDF/X, PDF/A, etc ',
+    title: 'long term cover',
+    price: '',
   },
   {
-    title: 'Other file types',
-    price: 'Anyother file type'
+    title: 'natural disasters',
+    price: ''
   },
 ];
 
@@ -46,7 +46,7 @@ const Services = () => {
       <Container>
         <SectionHeading
           slogan="Ideal solutions for you"
-          title="Didn’t find your file type? Don't worry, Just upload it!"
+          title="Comprehensive Risk Coverage for Data Owners and Storage Providers (SPs)!"
         />
         <Box sx={styles.grid}>
           {services.map((service, i) => (
