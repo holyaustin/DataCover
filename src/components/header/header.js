@@ -3,13 +3,13 @@
 import { jsx, Box, Flex, Container, Button } from 'theme-ui';
 import { Fragment, useState } from 'react';
 import Sticky from 'react-stickynode';
-import Image from '../image';
+import Image from 'components/image';
 // import Logo from 'assets/images/logosmallblack.png';
-import TopBar from '../topbar';
-import LockIcon from '../icons/lock';
-import HamburgerMenu from '../hamburger';
+import TopBar from 'components/topbar';
+import LockIcon from 'components/icons/lock';
+import HamburgerMenu from 'components/hamburger';
 import Navbar from './navbar';
-import ConnectWallet from '../ConnectWallet';
+import ConnectWallet from 'components/ConnectWallet';
 
 export default function Header() {
   const [state, setState] = useState({

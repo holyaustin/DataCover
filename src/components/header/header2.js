@@ -4,11 +4,11 @@ import { jsx, Box, Flex, Container, Button } from 'theme-ui';
 import { Fragment, useState } from 'react';
 import Link from 'next/link'
 import Sticky from 'react-stickynode';
-import Image from '../image';
+import Image from 'components/image';
 // import Logo from 'assets/images/logosmallblack.png';
-import TopBar from '../topbar';
-import LockIcon from '../icons/lock';
-import HamburgerMenu from '../hamburger';
+import TopBar from 'components/topbar';
+import LockIcon from 'components/icons/lock';
+import HamburgerMenu from 'components/hamburger';
 // import Navbar2 from './navbar2';
 
 export default function Header() {

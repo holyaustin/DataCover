@@ -2,7 +2,7 @@
 /** @jsx jsx */
 import { jsx, Box, Text } from 'theme-ui';
 import { useMediaQuery } from 'react-responsive';
-import Image from '../image';
+import Image from 'components/image';
 
 const Testimonial = ({ testimonial }) => {
   const isMobile = useMediaQuery({

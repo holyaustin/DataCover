@@ -1,7 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx, Box } from 'theme-ui';
-import { NavLink } from '../link';
+import { NavLink } from 'components/link';
 import { useRouter } from 'next/router'
 import menuItems from './header2.data';
 

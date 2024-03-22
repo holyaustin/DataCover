@@ -2,10 +2,10 @@
 /** @jsx jsx */
 import { jsx, Box, Text, Container } from 'theme-ui';
 import { rgba } from 'polished';
-import Logo from '../icons/logo';
-import { Link } from '../link';
+import Logo from 'components/icons/logo';
+import { Link } from 'components/link';
 // import CallToAction from 'sections/call-to-action';
-import Image from '../image';
+import Image from 'components/image';
 import Widget from './widget';
 import { menuItems } from './footer.data';
 import { Fragment } from 'react';
@@ -28,7 +28,7 @@ export default function Footer() {
                 <Link path="#!">Privacy</Link>
               </Box>
               <Text as="p" sx={styles.copyright}>
-                Copyright by {new Date().getFullYear()} Data Cover Insurance
+                Copyright by {new Date().getFullYear()} Kezzaya LLC
               </Text>
             </Box>
             {menuItems.map(({ id, title, items }) => (
