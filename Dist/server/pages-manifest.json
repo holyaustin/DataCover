@@ -1,0 +1,11 @@
+{
+  "/_app": "pages/_app.js",
+  "/_error": "pages/_error.js",
+  "/_document": "pages/_document.js",
+  "/addfile": "pages/addfile.js",
+  "/addfolder": "pages/addfolder.js",
+  "/analytics": "pages/analytics.js",
+  "/dashboard": "pages/dashboard.js",
+  "/fileshare": "pages/fileshare.js",
+  "/": "pages/index.js"
+}

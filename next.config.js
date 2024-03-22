@@ -8,7 +8,7 @@ const nextConfiguration = {
 module.exports = withPlugins([optimizedImages], nextConfiguration);
 module.exports = {
   webpack5: true,
-  distDir: 'dist',
+  distDir: 'Dist',
   experiments: {
     topLevelAwait: true, 
     },
