@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import Router from 'next/router';
 import { initGA, logPageView } from 'analytics';
 */
-import 'assets/css/react-slick.css';
+//import 'assets/css/react-slick.css';
 import 'tailwindcss/tailwind.css'
 
 export default function CustomApp({ Component, pageProps }) {

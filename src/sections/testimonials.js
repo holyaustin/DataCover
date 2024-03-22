@@ -3,7 +3,7 @@
 import { jsx, Box, Container } from 'theme-ui';
 import Slider from 'react-slick';
 import dynamic from 'next/dynamic';
-const Testimonial = dynamic(() => import('components/cards/testimonial'), {
+const Testimonial = dynamic(() => import('../components/cards/testimonial'), {
   ssr: false,
 });
 import author from 'assets/images/testimonial.png';

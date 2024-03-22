@@ -2,9 +2,9 @@
 /** @jsx jsx */
 import { jsx, Box, Container } from 'theme-ui';
 import Slider from 'react-slick';
-import SectionHeading from 'components/section-heading';
-import PriceTable from 'components/cards/price-table';
-import SlickArrow from 'components/slick-arrow';
+import SectionHeading from '../components/section-heading';
+import PriceTable from '../components/cards/price-table';
+import SlickArrow from '../components/slick-arrow';
 
 const data = [
   {

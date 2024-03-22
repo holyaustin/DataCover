@@ -2,9 +2,9 @@
 /** @jsx jsx */
 import { jsx, Box, Container } from 'theme-ui';
 import Slider from 'react-slick';
-import SectionHeading from 'components/section-heading';
-import BlogPost from 'components/cards/blog-post';
-import SlickArrow from 'components/slick-arrow';
+import SectionHeading from '../components/section-heading';
+import BlogPost from '../components/cards/blog-post';
+import SlickArrow from '../components/slick-arrow';
 import thumb1 from 'assets/images/blog/1.png';
 import thumb2 from 'assets/images/blog/2.png';
 import thumb3 from 'assets/images/blog/3.png';

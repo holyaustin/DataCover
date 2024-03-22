@@ -3,8 +3,8 @@
 import { jsx } from 'theme-ui';
 import { Container, Box } from 'theme-ui';
 import { useMediaQuery } from 'react-responsive';
-import SectionHeading from 'components/section-heading';
-import Image from 'components/image';
+import SectionHeading from '../components/section-heading';
+import Image from '../components/image';
 import supportTeam from 'assets/images/support-team.png';
 
 export default function Support() {
