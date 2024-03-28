@@ -1,26 +1,29 @@
-require("@nomiclabs/hardhat-waffle");
-require('dotenv').config();
+//require("@nomiclabs/hardhat-waffle");
+//require('dotenv').config();
+
+require("@nomicfoundation/hardhat-toolbox")
+require("hardhat-deploy")
+require("hardhat-deploy-ethers")
+//require("./tasks")
+require("dotenv").config()
 
 module.exports = {
-  defaultNetwork: "hardhat",
+  solidity: "0.8.17",
+  defaultNetwork: "hyperspace",
   networks: {
     hardhat: {
       chainId: 1337
     },
-   
-    bttc: {
-      url: process.env.BTTC_RPC_KEY, // 'https://pre-rpc.bt.io/'
-      accounts: [process.env.PRIVATE_KEY],
+    hyperspace: {
+      url: "https://filecoin-calibration.chainup.net/rpc/v1",
+      accounts: [PRIVATE_KEY],
     },
 
   },
-  solidity: {
-    version: "0.8.9",
-    settings: {
-      optimizer: {
-        enabled: true,
-        runs: 200
-      }
-    }
-  }
+  paths: {
+    sources: "./contracts",
+    tests: "./test",
+    cache: "./cache",
+    artifacts: "./artifacts",
+  },
 };
