@@ -10,8 +10,8 @@ export default function AddFolder() {
     <ThemeProvider theme={theme}>
       <Layout>
         <SEO
-          title="Add new folder"
-          description="add a new folder"
+          title="Storage Providers"
+          description="Storage Providers"
         />
         <Mintfolder />
 

@@ -147,3 +147,12 @@ In exchange for recurrent insurance premium payments, this protocol would check 
 Storage insurance brokers or marketplaces could emerge to offer single points of subscription and management for clients and providers.
 
 In some ways, this is similar to Nexus Mutual for SPs on FVM. While Nexus guards against contract failure, this protocol would help SPs recover from an active fault or termination.
+
+# Future Integrations (Whats next after the hackathon)
+1. Add Event listeners to the smart contract.
+2. Making the contract more gas efficient using Error() instead of require().Add 
+3. Adding more admin features to add accountability.
+4. Including Statistical charts and improving on the frontend.
+5. Engaging with IPFS/Filecoin team to integrate the API of storage providers to help onboarding them for insurance cover.
+6. Certain characteristics (such as payment history, length of operation, availability, etc) can be used to craft insurance policies just as they can be used to underwrite loans to SPs.
+7. A profile database to house users details.

@@ -1,4 +1,4 @@
 
-    export const DataInsuranceAddress = "0x0E9F136c3F7270241Cc58c887e5F15e7fb7cc5C3"
-    export const DataFactoryAddress = "0xb8D0714dDDE7C47A4d41bbBDa4Fb5B052af92717"
+    export const DataInsuranceAddress = "0x3D1fEA8b4Df26426bf93964503236EE1Db8A43De"
+    export const DataFactoryAddress = "0x7Db01bFF5333DC99D31aD6dC45dbc5249B770022"
     

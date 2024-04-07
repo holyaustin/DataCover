@@ -10,8 +10,8 @@ export default function AddFile() {
     <ThemeProvider theme={theme}>
       <Layout>
         <SEO
-          title="Add new file"
-          description="add a new file"
+          title="Data Owners"
+          description="data owners"
         />
         <Mintfile />
 

@@ -10,8 +10,8 @@ export default function Dashboard() {
     <ThemeProvider theme={theme}>
       <Layout>
         <SEO
-          title="Add new file"
-          description="add a new file"
+          title="Analytics"
+          description="Analytics"
         />
         <ComingSoon/>
 

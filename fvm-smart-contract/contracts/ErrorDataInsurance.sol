@@ -1,0 +1,173 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.17;
+
+/**
+ * @title DataCover Smart Contract
+ * @author @holyaustin (Augustine Onuora)
+ * @notice This contract implements an insurance cover that offers users up to 3 varieties of insurance policies in a 
+ * DataInsurance.sol smart contract. Users can choose one of the 3 packages namely Regular, Robust, and Comprehensive, 
+ * all provided in a custom data type (enum InsurancePackage). 
+ * The packages require users to pay an insurance amount of 0.02 ether, 0.05 ether and 0.1 ether respectively, every 28 days. 
+ * The contract also recognizes an admin (the insurance company) to whose address all insurance amounts are paid. 
+ * This admin gets to approve that a user be able to claim up to 2 times the total amount they have ever paid as premium, 
+ * in a case that they raise a claim as a result of compromise to their insured data. The admin judges this and may approve 
+ * or decline user claims.
+ */
+
+contract ErrorDataInsurance {
+    address payable public verifierCompany;
+    uint256 constant private regularPremium = 0.02 ether;
+    uint256 constant private robustPremium = 0.05 ether;
+    uint256 constant private comprehensivePremium = 0.1 ether;
+    uint256 constant private paymentInterval = 28 days;
+
+    enum InsurancePackage {Regular, Robust, Comprehensive}
+    enum ClaimStatus {Pending, Approved, Rejected}
+
+    struct User {
+        InsurancePackage package;
+        uint256 premiumAmount;
+        uint256 lastPaymentTimestamp;
+        uint256 totalPayments; 
+        bool isActive;
+    }
+
+    mapping(address => User) public users;
+    mapping(address => ClaimStatus) public claims;
+
+    constructor(address payable _verifierCompany) {
+        verifierCompany = _verifierCompany;
+    }
+
+    modifier onlyAdmin() {
+        require(
+            msg.sender == verifierCompany,
+            "Only verifier can perform action."
+        );
+        _;
+    }
+
+    error Unauthorized();
+    error InvalidPackageSelected();
+    error UserAlreadyActive();
+    error InsufficientAmount();
+    error InsufficientBalance(uint256 available, uint256 required);
+    error NoActivePackage();
+    error NoPendingClaim();
+    error PaymentNotDue();
+
+
+    // Function for users to select an insurance package and make the premium payment
+    function selectPackage(InsurancePackage _package) external payable {
+        
+           if (_package >= InsurancePackage.Regular && _package <= InsurancePackage.Comprehensive)
+           revert InvalidPackageSelected();
+           
+      
+            if(!users[msg.sender].isActive)
+           revert UserAlreadyActive();
+
+        User storage user = users[msg.sender];
+        user.package = _package;
+        user.isActive = true;
+        user.lastPaymentTimestamp = block.timestamp;
+
+        // Set the premium amount based on the selected insurance package
+        if (_package == InsurancePackage.Regular) {
+            user.premiumAmount = regularPremium;
+        } else if (_package == InsurancePackage.Robust) {
+            user.premiumAmount = robustPremium;
+        } else if (_package == InsurancePackage.Comprehensive) {
+            user.premiumAmount = comprehensivePremium;
+        }
+
+        // Transfer premium amount to the verifier company
+        if(msg.value >= user.premiumAmount)
+            //revert InsufficientAmount();
+            revert InsufficientBalance({
+                available: msg.value,
+                required: user.premiumAmount
+            });           
+        (bool success, ) = verifierCompany.call{value: msg.value}("");
+        require(success, "Premium transfer failed.");
+    }
+    
+
+    // Function for users to submit a claim for their insured data
+    function submitClaim() external {
+        if(users[msg.sender].isActive)
+            revert NoActivePackage();
+
+        if(claims[msg.sender] == ClaimStatus.Pending)
+            revert NoPendingClaim();
+
+        claims[msg.sender] = ClaimStatus.Pending;
+    }
+
+    // Function for the admin to approve a user's claim and transfer the claim payout
+    function approveClaim(address _user) external onlyAdmin {
+        if(users[msg.sender].isActive)
+            revert NoActivePackage();
+        
+        if(claims[msg.sender] == ClaimStatus.Pending)
+            revert NoPendingClaim();
+
+        claims[_user] = ClaimStatus.Approved;
+        uint256 claimPayout = users[_user].totalPayments * 2; // Payout value is twice the total payments made by the user
+        (bool success, ) = _user.call{value: claimPayout}("");
+        require(success, "Claim payout failed.");
+    }
+
+    // Function for the admin to reject a user's claim
+    function rejectClaim(address _user) external onlyAdmin {
+        if(users[msg.sender].isActive)
+            revert NoActivePackage();
+
+        if(claims[msg.sender] == ClaimStatus.Pending)
+            revert NoPendingClaim();
+
+        claims[_user] = ClaimStatus.Rejected;
+    }
+
+    // Function for users to cancel their insurance package
+    function cancelInsurance() external {
+        if(users[msg.sender].isActive)
+            revert NoActivePackage();
+
+        users[msg.sender].isActive = false;
+    }
+
+    // Function for users to pay their premium to the verifier company
+    function payPremiumToVerifier() external payable {
+        User storage user = users[msg.sender];
+ 
+        if(user.isActive)
+        revert NoActivePackage();
+
+        uint256 elapsedTime = block.timestamp - user.lastPaymentTimestamp;
+        uint256 missedPayments = elapsedTime / paymentInterval;
+        uint256 paymentDue = user.lastPaymentTimestamp + (missedPayments * paymentInterval);
+
+        if(block.timestamp >= paymentDue)
+          revert PaymentNotDue();
+        // Calculate the number of premiums due
+        uint256 premiumsDue = missedPayments + 1;
+
+        // Calculate the total premium amount due
+        uint256 totalPremiumAmountDue = premiumsDue * user.premiumAmount;
+
+        // Update last payment timestamp and total payments made by the user
+        user.lastPaymentTimestamp = paymentDue;
+        user.totalPayments += premiumsDue;
+
+        // Transfer premium amount to the verifier company
+          if(msg.value >= totalPremiumAmountDue)
+            //revert InsufficientAmount();
+            revert InsufficientBalance({
+                available: msg.value,
+                required: totalPremiumAmountDue
+            }); 
+        (bool success, ) = verifierCompany.call{value: totalPremiumAmountDue}("");
+        require(success, "Premium transfer failed");
+    }
+}

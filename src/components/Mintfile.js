@@ -7,15 +7,15 @@ import { NFTStorage } from "nft.storage";
 import { useRouter } from 'next/router'
 import { ethers } from "ethers";
 import Web3Modal from "web3modal";
-import axios from 'axios'
-import { rgba } from 'polished';
 import { Wallet, providers } from "ethers";
 
-import 'dotenv/config';
-import DataInsurance from "../../artifacts/contracts/DataInsurance.sol/DataInsurance.json";
+import DataInsuranceFactory from "../../artifacts/contracts/DataInsuranceFactory.sol/DataInsuranceFactory.json";
+import { DataFactoryAddress } from "../../configData";
 
+import DataInsurance from "../../artifacts/contracts/DataInsurance.sol/DataInsurance.json";
 import { DataInsuranceAddress } from "../../configData";
-// const APIKEY = [process.env.NFT_STORAGE_API_KEY];
+
+const rpc = "https://api.calibration.node.glif.io/rpc/v1";
 
 const MintFile = () => {
   const navigate = useRouter();
@@ -35,10 +35,10 @@ const MintFile = () => {
       const connection = await web3Modal.connect();
       const provider = new ethers.providers.Web3Provider(connection);
 
-      const connectedContract = new ethers.Contract(DataInsuranceAddress, DataInsurance.abi, provider.getSigner());
-      console.log("Connected to contract", DataInsuranceAddress);
+      const connectedContract = new ethers.Contract(DataFactoryAddress, DataInsuranceFactory.abi, provider.getSigner());
+      console.log("Connected to contract", DataFactoryAddress);
 
-      const buyTx = await connectedContract.selectPackage(0);
+      const buyTx = await connectedContract.createDataInsuranceContract();
       console.log("File successfully created and added to Blockchain");
       await buyTx.wait();
       //return buyTx;
@@ -55,10 +55,10 @@ const MintFile = () => {
       const connection = await web3Modal.connect();
       const provider = new ethers.providers.Web3Provider(connection);
 
-      const connectedContract = new ethers.Contract(DataInsuranceAddress, DataInsurance.abi, provider.getSigner());
-      console.log("Connected to contract", DataInsuranceAddress);
+      const connectedContract = new ethers.Contract(DataFactoryAddress, DataInsuranceFactory.abi, provider.getSigner());
+      console.log("Connected to contract", DataFactoryAddress);
 
-      const buyTx = await connectedContract.selectPackage(1);
+      const buyTx = await connectedContract.createDataInsuranceContract();
       console.log("File successfully created and added to Blockchain");
       await buyTx.wait();
       //return buyTx;
@@ -74,29 +74,27 @@ const MintFile = () => {
       const web3Modal = new Web3Modal();
       const connection = await web3Modal.connect();
       const provider = new ethers.providers.Web3Provider(connection);
+ 
+      const connectedContract = new ethers.Contract(DataFactoryAddress, DataInsuranceFactory.abi, provider.getSigner());
+      console.log("Connected to contract", DataFactoryAddress);
 
-      const connectedContract = new ethers.Contract(DataInsuranceAddress, DataInsurance.abi, provider.getSigner());
-      console.log("Connected to contract", DataInsuranceAddress);
-
-      const buyTx = await connectedContract.selectPackage(2);
+      const buyTx = await connectedContract.createDataInsuranceContract();
       console.log("File successfully created and added to Blockchain");
       await buyTx.wait();
       //return buyTx;
-    } catch (error) {
+
+      //const gasEstimated = await connectedContract.estimateGas.selectPackage(2);
+      //console.log("Gas estimate is", gasEstimated)
+      //const buyTx = await connectedContract.estimateGas.selectPackage(2, {
+      gasLimit: Math.ceil(gasMargin(gasEstimated, 1.1)) 
+      //});
+      } catch (error) {
       setErrorMessage("Failed to send tx to Blockchain.");
       console.log(error);
     }
   };
 
 
-  
-  const getIPFSGatewayURL = (ipfsURL) => {
-    const urlArray = ipfsURL.split("/");
-    console.log("urlArray = ", urlArray);
-    const ipfsGateWayURL = `https://${urlArray[2]}.ipfs.nftstorage.link/${urlArray[3]}`;
-    console.log("ipfsGateWayURL = ", ipfsGateWayURL)
-    return ipfsGateWayURL;
-  };
 
   return (
     <Box as="section"  sx={styles.section}>
@@ -115,8 +113,18 @@ const MintFile = () => {
           <button type="button" onClick={BuyRobust} className="font-bold mt-10 bg-blue-700 text-white text-2xl rounded p-4 shadow-lg">
             Buy Robust (0.05 FIL)
           </button>
-          <button type="button" onClick={BuyComprehensive} className="font-bold mt-10 bg-red-700 text-white text-2xl rounded p-4 shadow-lg">
+          <button type="button" onClick={BuyComprehensive} className="font-bold mt-10 bg-indigo-700 text-white text-2xl rounded p-4 shadow-lg">
             Buy Comprehensive (0.1 FIL)
+          </button>
+
+          <div className="bg-purple-100 text-2xl text-center text-black font-bold pt-2 mt-10">
+            <h2> Claims</h2>
+            </div>
+          <button type="button" onClick={BuyComprehensive} className="font-bold mt-10 bg-black text-white text-2xl rounded p-4 shadow-lg">
+            Submit your Claim 
+          </button>
+          <button type="button" onClick={BuyComprehensive} className="font-bold mt-10 bg-red-700 text-white text-2xl rounded p-4 shadow-lg">
+            Cancel Insurance Cover
           </button>
         </div>
       </div>

@@ -3,154 +3,98 @@
 
 import React, { useState } from "react";
 import { jsx, Box } from 'theme-ui';
-import { NFTStorage } from "nft.storage";
-import { filesFromPath } from "files-from-path";
-import path from "path";
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/router'
 import { ethers } from "ethers";
 import Web3Modal from "web3modal";
-import { rgba } from 'polished';
-import 'dotenv/config';
-import DataInsuranceFactory from "../../artifacts/contracts/DataInsuranceFactory.sol/DataInsuranceFactory.json";
+import { Wallet, providers } from "ethers";
 
-import { DataInsuranceAddress } from "../../configData";
-const APIKEY = [process.env.NFT_STORAGE_API_KEY];
+import ProviderInsuranceFactory from "../../artifacts/contracts/ProviderInsuranceFactory.sol/ProviderInsuranceFactory.json";
+import { ProviderFactoryAddress } from "../../configProvider";
 
-const MintFile = () => {
+import ProviderInsurance from "../../artifacts/contracts/ProviderInsurance.sol/ProviderInsurance.json";
+import { ProviderInsuranceAddress } from "../../configProvider";
+
+const rpc = "https://api.calibration.node.glif.io/rpc/v1";
+
+const SPInsurance = () => {
   const navigate = useRouter();
-  const [filePaths, setFilePaths] = useState([])
   const [errorMessage, setErrorMessage] = useState(null);
   const [uploadedFile, setUploadedFile] = useState();
   const [imageView, setImageView] = useState();
   const [metaDataURL, setMetaDataURl] = useState();
   const [txURL, setTxURL] = useState();
   const [txStatus, setTxStatus] = useState();
-  const [formInput, updateFormInput] = useState({ name: ""});
+  const [formInput, updateFormInput] = useState({ name: "" });
 
-  const handleFileUpload = (event) => {
-    console.log("folder for upload selected...");
-    //setUploadedFile(Array.from(event.target.files));
-    // onPickFiles(Array.from(e.target.files));
-    // const handleFilesChange = e => onPickFiles(Array.from(e.target.files))
-    setUploadedFile(event.target.files[0]);
-    setTxStatus("");
-    setImageView("");
-    setMetaDataURl("");
-    setTxURL("");
-  };
 
-  const uploadNFTContent = async (inputFile) => {
-    const { name } = formInput;
-    if (!name || !inputFile) return;
-    console.log("About to upload selected Folder...");
-    // const filePaths = inputFile.map(f => f.path)
-    // console.log(`storing files from {filePaths}`)
-    // setFilePaths(filePaths)
-
-    if (process.argv.length !== 3) {
-      console.error(`usage: ${process.argv[0]} ${process.argv[1]} <directory-path>`)
-    }
-    const directoryPath = process.argv[2];
-    const files = filesFromPath(directoryPath, {
-       // see the note about pathPrefix below
-      hidden: true, // use the default of false if you want to ignore files that start with '.'
-    })
-
-    const nftStorage = new NFTStorage({ APIKEY });
+  const BuyCategoryA = async () => {
     try {
-      console.log("Trying to upload folder to ipfs");
-      setTxStatus("Uploading Folder to IPFS & Filecoin via NFT.storage.");
-      console.log(`storing file(s) from ${path}`)
-      //console.log(`storing files from {filePaths}`)
-      const metaData = await nftStorage.storeDirectory(files);
-      console.log("cid is: ", { metaData });
-      setMetaDataURl(metaData.url);
-      
-      
-      const status = await nftStorage.status(metaData)
-      console.log(status)
-      return metaData;
-    } catch (error) {
-      setErrorMessage("Could store file to NFT.Storage - Aborted file upload.");
-      console.log("Error Uploading Content", error);
-    }
-  };
-
-  const sendTxToBlockchain = async (metadata) => {
-    try {
-      setTxStatus("Adding transaction to Polygon Mumbai Blockchain.");
+      setTxStatus("Adding transaction to Blockchain..");
       const web3Modal = new Web3Modal();
       const connection = await web3Modal.connect();
       const provider = new ethers.providers.Web3Provider(connection);
 
-      const privatefile = formInput.privatefile.toString();
+      const connectedContract = new ethers.Contract(ProviderFactoryAddress, ProviderInsuranceFactory.abi, provider.getSigner());
+      console.log("Connected to contract", ProviderFactoryAddress);
 
-      const connectedContract = new ethers.Contract(DataInsuranceAddress, DataInsuranceFactory.abi, provider.getSigner());
-      console.log("Connected to contract", DataInsuranceAddress);
-      console.log("IPFS blockchain uri is ", metadata.url);
-
-      const mintNFTTx = await connectedContract.createFile(metadata.url, privatefile);
+      const buyTx = await connectedContract.createProviderInsurance();
       console.log("File successfully created and added to Blockchain");
-      await mintNFTTx.wait();
-      return mintNFTTx;
+      await buyTx.wait();
+      //return buyTx;
     } catch (error) {
-      setErrorMessage("Failed to send tx to Polygon Mumbai.");
+      setErrorMessage("Failed to send tx to Blockchain.");
       console.log(error);
     }
   };
 
-  const previewNFT = (metaData, mintNFTTx) => {
-    console.log("getIPFSGatewayURL2 two is ...");
-    setMetaDataURl(getIPFSGatewayURL(metaData));
-    setTxStatus("File addition was successfully!");
-    console.log("Preview details completed");
+  const BuyCategoryB = async () => {
+    try {
+      setTxStatus("Adding transaction to Blockchain..");
+      const web3Modal = new Web3Modal();
+      const connection = await web3Modal.connect();
+      const provider = new ethers.providers.Web3Provider(connection);
+
+      const connectedContract = new ethers.Contract(ProviderFactoryAddress, ProviderInsuranceFactory.abi, provider.getSigner());
+      console.log("Connected to contract", ProviderFactoryAddress);
+
+      const buyTx = await connectedContract.payPremiumCategoryB();
+      console.log("File successfully created and added to Blockchain");
+      await buyTx.wait();
+      //return buyTx;
+    } catch (error) {
+      setErrorMessage("Failed to send tx to Blockchain.");
+      console.log(error);
+    }
   };
 
-  const mintNFTFile = async (e, uploadedFile) => {
-    e.preventDefault();
-    // 1. upload File content via NFT.storage
-    const metaData = await uploadNFTContent(uploadedFile);
-
-    // 2. Mint a NFT token on Polygon
-    const mintNFTTx = await sendTxToBlockchain(metaData);
-
-    // 3. preview the minted nft
-   previewNFT(metaData, mintNFTTx);
-
-    //navigate("/explore");
-    // navigate.push('/dashboard')
-  };
-
-  const getIPFSGatewayURL = (ipfsURL) => {
-    //const urlArray = ipfsURL.split("/");
-    //console.log("urlArray = ", urlArray);
-    //const ipfsGateWayURL = `https://${urlArray[2]}.ipfs.nftstorage.link/${urlArray[3]}`;
-    console.log("ipfsGateWayURL = ", "ipfsGateWayURL")
-    return "https://${urlArray[2]}.ipfs.nftstorage.link/${urlArra";
-  };
-
+  
   return (
     <Box as="section"  sx={styles.section}>
       <div className="bg-purple-100 text-4xl text-center text-black font-bold pt-10">
-        <h1> Add Folder</h1>
+        <h1> Buy Cover for Storage Providers (SP)</h1>
       </div>
       <div className="flex justify-center bg-purple-100">
         <div className="w-1/2 flex flex-col pb-12 ">
-        <input
-            placeholder="Give the folder a name"
-            className="mt-5 border rounded p-4 text-xl"
-            onChange={(e) => updateFormInput({ ...formInput, name: e.target.value })}
-          />
-          <div className="MintNFT text-xl text-black">
-            <form>
-              <h3>Select a Folder</h3>
-              <input type="file" multiple directory="" mozdirectory=""  webkitdirectory='true' onChange={handleFileUpload} className="text-black mt-2 border rounded text-xl" />
-            </form>
-            {txStatus && <p>{txStatus}</p>}
-            </div>
 
-          <button type="button" onClick={(e) => mintNFTFile(e, uploadedFile)} className="font-bold mt-20 bg-purple-700 text-white text-2xl rounded p-4 shadow-lg">
-            Publish Folder
+          <div className="bg-purple-100 text-2xl text-center text-black font-bold pt-2">
+          <h2> Prices of Insurance cover are for Demo purpose. Actual prices shall be used in Production on Mainnet</h2>
+          </div>
+          <button type="button" onClick={BuyCategoryA} className="font-bold mt-5 bg-purple-700 text-white text-2xl rounded p-4 shadow-lg">
+            Buy Category A Premium  (0.01 FIL)
+          </button>
+          <button type="button" onClick={BuyCategoryB} className="font-bold mt-10 bg-blue-700 text-white text-2xl rounded p-4 shadow-lg">
+            Buy Category B Premium (0.1 FIL)
+          </button>
+          <hr />
+
+          <div className="bg-purple-100 text-2xl text-center text-black font-bold pt-2 mt-10">
+            <h2> Claims</h2>
+            </div>
+          <button type="button" onClick={BuyCategoryB} className="font-bold mt-10 bg-black text-white text-2xl rounded p-4 shadow-lg">
+            Submit your Claim 
+          </button>
+          <button type="button" onClick={BuyCategoryB} className="font-bold mt-10 bg-red-700 text-white text-2xl rounded p-4 shadow-lg">
+            Cancel your Insurance 
           </button>
         </div>
       </div>
@@ -158,7 +102,7 @@ const MintFile = () => {
 
   );
 };
-export default MintFile;
+export default SPInsurance;
 
 const styles = {
   section: {

@@ -74,7 +74,7 @@ export default function Header() {
           <Link href="/admin">
           <a>House-Keeping </a>
           </Link>
-          <Link href="https://web3chat-datacover.vercel.app/" target="_blank">
+          <Link href="https://web3chat-holyaustin.vercel.app/" target="_blank">
           <a>Chat </a>
           </Link>
           <Link href="/analytics">

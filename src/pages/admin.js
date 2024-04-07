@@ -10,8 +10,8 @@ export default function Dashboard() {
     <ThemeProvider theme={theme}>
       <Layout>
         <SEO
-          title="P2P File Share"
-          description="Share file"
+          title="House Keeping Task"
+          description="House Keeping Task"
         />
         <Share/>
       </Layout>

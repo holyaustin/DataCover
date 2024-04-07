@@ -10,8 +10,8 @@ export default function Dashboard() {
     <ThemeUIProvider theme={theme}>
       <Layout>
         <SEO
-          title="Add new file"
-          description="add a new file"
+          title="User Dashboard"
+          description="User Dashboard"
         />
         <ViewFiles/>
 
