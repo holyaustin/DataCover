@@ -2,7 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 
 export default function SEO({
-  description = 'datacover file storage and sharing description',
+  description = 'datacover file insurance',
   author = 'HolyAustin Dev',
   meta,
   title = 'datacover',

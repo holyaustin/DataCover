@@ -9,11 +9,11 @@ export default [
   },
   {
     path: '/addfile',
-    label: 'Add-File',
+    label: 'Data-Owners',
   },
   {
     path: '/addfolder',
-    label: 'Add-Folder',
+    label: 'Storage-Provider',
   },
   {
     path: '/activities',

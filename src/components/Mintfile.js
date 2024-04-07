@@ -12,10 +12,10 @@ import { rgba } from 'polished';
 import { Wallet, providers } from "ethers";
 
 import 'dotenv/config';
-import fileNFT from "../../artifacts/contracts/datacover.sol/FileNFT.json";
-import { fileShareAddress } from "../../config";
+import DataInsurance from "../../artifacts/contracts/DataInsurance.sol/DataInsurance.json";
+
+import { DataInsuranceAddress } from "../../configData";
 // const APIKEY = [process.env.NFT_STORAGE_API_KEY];
-const APIKEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDA4Zjc4ODAwMkUzZDAwNEIxMDI3NTFGMUQ0OTJlNmI1NjNFODE3NmMiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY1MzA1NjE4NzM4MCwibmFtZSI6InBlbnNpb25maSJ9.agI-2V-FeK_eVRAZ-T6KGGfE9ltWrTUQ7brFzzYVwdM";
 
 const MintFile = () => {
   const navigate = useRouter();
@@ -27,89 +27,69 @@ const MintFile = () => {
   const [txStatus, setTxStatus] = useState();
   const [formInput, updateFormInput] = useState({ name: "" });
 
-  const handleFileUpload = (event) => {
-    console.log("file for upload selected...");
-    setUploadedFile(event.target.files[0]);
-    setTxStatus("");
-    setImageView("");
-    setMetaDataURl("");
-    setTxURL("");
-  };
 
-  const uploadNFTContent = async (inputFile) => {
-    const { name } = formInput;
-    if (!name || !inputFile) return;
-    const nftStorage = new NFTStorage({ token: APIKEY, });
+  const BuyRegular = async () => {
     try {
-      console.log("Trying to upload file to ipfs");
-      setTxStatus("Uploading Item to IPFS & Filecoin via NFT.storage.");
-      console.log("close to metadata");
-      const metaData = await nftStorage.store({
-        name,
-        description: name,
-        image: inputFile,
-      });
-      setMetaDataURl(metaData.url);
-      console.log("metadata is: ", { metaData });
-      return metaData;
-    } catch (error) {
-      setErrorMessage("Could store file to NFT.Storage - Aborted file upload.");
-      console.log("Error Uploading Content", error);
-    }
-  };
-
-  const sendTxToBlockchain = async (metadata) => {
-    try {
-      setTxStatus("Adding transaction to BitTorrent Chain (BTTC)..");
+      setTxStatus("Adding transaction to Blockchain..");
       const web3Modal = new Web3Modal();
       const connection = await web3Modal.connect();
       const provider = new ethers.providers.Web3Provider(connection);
 
-      // const privatefile = formInput.privatefile.toString();
+      const connectedContract = new ethers.Contract(DataInsuranceAddress, DataInsurance.abi, provider.getSigner());
+      console.log("Connected to contract", DataInsuranceAddress);
 
-      const connectedContract = new ethers.Contract(fileShareAddress, fileNFT.abi, provider.getSigner());
-      console.log("Connected to contract", fileShareAddress);
-      console.log("IPFS blockchain uri is ", metadata.url);
-
-      const mintNFTTx = await connectedContract.createFile(metadata.url);
+      const buyTx = await connectedContract.selectPackage(0);
       console.log("File successfully created and added to Blockchain");
-      await mintNFTTx.wait();
-      return mintNFTTx;
+      await buyTx.wait();
+      //return buyTx;
     } catch (error) {
-      setErrorMessage("Failed to send tx to BitTorrent Chain (BTTC).");
+      setErrorMessage("Failed to send tx to Blockchain.");
       console.log(error);
     }
   };
 
-  const previewNFT = (metaData, mintNFTTx) => {
-    console.log("getIPFSGatewayURL2 two is ...");
-    const imgViewString = getIPFSGatewayURL(metaData.data.image.pathname);
-    console.log("image ipfs path is", imgViewString);
-    setImageView(imgViewString);
-    setMetaDataURl(getIPFSGatewayURL(metaData.url));
-    setTxURL(`https://testnet.bttcscan.com/tx/${mintNFTTx.hash}`);
-    setTxStatus("File addition was successfully!");
-    console.log("File preview completed");
+  const BuyRobust = async () => {
+    try {
+      setTxStatus("Adding transaction to Blockchain..");
+      const web3Modal = new Web3Modal();
+      const connection = await web3Modal.connect();
+      const provider = new ethers.providers.Web3Provider(connection);
+
+      const connectedContract = new ethers.Contract(DataInsuranceAddress, DataInsurance.abi, provider.getSigner());
+      console.log("Connected to contract", DataInsuranceAddress);
+
+      const buyTx = await connectedContract.selectPackage(1);
+      console.log("File successfully created and added to Blockchain");
+      await buyTx.wait();
+      //return buyTx;
+    } catch (error) {
+      setErrorMessage("Failed to send tx to Blockchain.");
+      console.log(error);
+    }
   };
 
-  const mintNFTFile = async (e, uploadedFile) => {
-    e.preventDefault();
-    // 1. upload File content via NFT.storage
-    const metaData = await uploadNFTContent(uploadedFile);
+  const BuyComprehensive = async () => {
+    try {
+      setTxStatus("Adding transaction to Blockchain..");
+      const web3Modal = new Web3Modal();
+      const connection = await web3Modal.connect();
+      const provider = new ethers.providers.Web3Provider(connection);
 
-    // 2. Mint a NFT token on BTTC Chain
-    const mintNFTTx = await sendTxToBlockchain(metaData);
+      const connectedContract = new ethers.Contract(DataInsuranceAddress, DataInsurance.abi, provider.getSigner());
+      console.log("Connected to contract", DataInsuranceAddress);
 
-    // 3. preview the minted nft
-   previewNFT(metaData, mintNFTTx);
-
-    //4. Mint Reward
-    // mintReward();
-
-    //5. navigate("/explore");
-    navigate.push('/dashboard');
+      const buyTx = await connectedContract.selectPackage(2);
+      console.log("File successfully created and added to Blockchain");
+      await buyTx.wait();
+      //return buyTx;
+    } catch (error) {
+      setErrorMessage("Failed to send tx to Blockchain.");
+      console.log(error);
+    }
   };
 
+
+  
   const getIPFSGatewayURL = (ipfsURL) => {
     const urlArray = ipfsURL.split("/");
     console.log("urlArray = ", urlArray);
@@ -121,48 +101,22 @@ const MintFile = () => {
   return (
     <Box as="section"  sx={styles.section}>
       <div className="bg-purple-100 text-4xl text-center text-black font-bold pt-10">
-        <h1> Add File</h1>
+        <h1> Buy Cover for Data Owners</h1>
       </div>
       <div className="flex justify-center bg-purple-100">
         <div className="w-1/2 flex flex-col pb-12 ">
-        <input
-            placeholder="Give the file a name"
-            className="mt-5 border rounded p-4 text-xl"
-            onChange={(e) => updateFormInput({ ...formInput, name: e.target.value })}
-          />
-          <br />
 
-          <div className="MintNFT text-black text-xl">
-            <form>
-              <h3>Select a File</h3>
-              <input type="file" onChange={handleFileUpload} className="text-black mt-2 border rounded  text-xl" />
-            </form>
-            {txStatus && <p>{txStatus}</p>}
-            
-            {metaDataURL && <p className="text-blue"><a href={metaDataURL} className="text-blue">Metadata on IPFS</a></p>}
-            
-            {txURL && <p><a href={txURL} className="text-blue">See the mint transaction</a></p>}
-           
-            {errorMessage}
-
-            
-            {imageView && (
-            <iframe
-              className="mb-10"
-              title="File"
-              src={imageView}
-              alt="File preview"
-              frameBorder="0"
-              scrolling="auto"
-              height="50%"
-              width="100%"
-            />
-            )}
-
-          </div>
-
-          <button type="button" onClick={(e) => mintNFTFile(e, uploadedFile)} className="font-bold mt-20 bg-purple-700 text-white text-2xl rounded p-4 shadow-lg">
-            Publish File
+          <div className="bg-purple-100 text-2xl text-center text-black font-bold pt-2">
+        <h2> Prices of Insurance cover are for Demo purpose. Actual prices shall be used in Production on Mainnet</h2>
+      </div>
+          <button type="button" onClick={BuyRegular} className="font-bold mt-5 bg-purple-700 text-white text-2xl rounded p-4 shadow-lg">
+            Buy Regular (0.02 FIL)
+          </button>
+          <button type="button" onClick={BuyRobust} className="font-bold mt-10 bg-blue-700 text-white text-2xl rounded p-4 shadow-lg">
+            Buy Robust (0.05 FIL)
+          </button>
+          <button type="button" onClick={BuyComprehensive} className="font-bold mt-10 bg-red-700 text-white text-2xl rounded p-4 shadow-lg">
+            Buy Comprehensive (0.1 FIL)
           </button>
         </div>
       </div>

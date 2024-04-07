@@ -1,10 +1,10 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import NextLink from 'next/link';
-import { jsx, Link as A } from 'theme-ui';
+import { Link as A } from 'theme-ui';
 import { Link as MenuLink } from 'react-scroll';
 import { IoIosArrowForward } from 'react-icons/io';
-import { keyframes } from '@emotion/core';
+import { jsx } from '@emotion/react';
 
 export function NavLink({ path, label, children, ...rest }) {
   return (
@@ -41,7 +41,7 @@ export function LearnMore({ path, label, children, ...rest }) {
   );
 }
 
-const fadeRight = keyframes`
+const fadeRight = jsx`
   from {
     opacity: 0;
     transform: translateX(-5px);

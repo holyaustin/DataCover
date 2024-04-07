@@ -139,3 +139,11 @@ Advert 3:
 Title: "Data Protection Made Easy with Data Insurance Cover!"
 
 Say goodbye to data worries and hello to peace of mind with Data Insurance Cover. Our hassle-free insurance solutions are designed to keep your data safe and secure, no matter what. From data loss to cyber-attacks, we've got you covered. Don't let uncertainties hold you back – choose Data Insurance Cover and protect what matters most to you.
+
+SPs with an established track record would take out insurance policies that protect them from active faults and ensure an active revenue stream in the case of failure. Certain characteristics (such as payment history, length of operation, availability, etc) can be used to craft insurance policies just as they can be used to underwrite loans to SPs.
+
+In exchange for recurrent insurance premium payments, this protocol would check if the SP is in good standing with the Filecoin network. If it isn’t in good standing, the SP could issue a claim that the protocol would review and issue a payout if all coverage criteria were met.
+
+Storage insurance brokers or marketplaces could emerge to offer single points of subscription and management for clients and providers.
+
+In some ways, this is similar to Nexus Mutual for SPs on FVM. While Nexus guards against contract failure, this protocol would help SPs recover from an active fault or termination.

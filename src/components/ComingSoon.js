@@ -8,8 +8,9 @@ import axios from "axios";
 import { useRouter } from 'next/router'
 import Web3Modal from "web3modal";
 
-import fileNFT from "../../artifacts/contracts/datacover.sol/FileNFT.json";
-import { fileShareAddress } from "../../config";
+import DataInsuranceFactory from "../../artifacts/contracts/DataInsuranceFactory.sol/DataInsuranceFactory.json";
+
+import { DataInsuranceAddress } from "../../configData";
 
 export default function ComingSoon() {
   const navigate = useRouter();
@@ -20,71 +21,6 @@ export default function ComingSoon() {
   const [fall, setfall] = useState([]);
   const [fme, setfme] = useState([]);
   const [loadingState, setLoadingState] = useState("not-loaded");
-  useEffect(() => {
-    loadfileNFT();
-  }, []);
-
-  async function loadfileNFT() {
-    /* create a generic provider and query for fileNFTs 
-    const provider = new ethers.providers.JsonRpcProvider();
-    const contract = new ethers.Contract(fileShareAddress, fileNFT.abi, provider);
-    const data = await contract.fetchMyNFTs();
-    console.log("fileNFT data fetched from contract", data);
-    */
-    const web3Modal = new Web3Modal({
-      network: 'mainnet',
-      cacheProvider: true,
-    })
-    const connection = await web3Modal.connect();
-    const provider = new ethers.providers.Web3Provider(connection);
-    const signer = provider.getSigner();
-    setAddress(await signer.getAddress())
-    
-    const contract = new ethers.Contract(fileShareAddress, fileNFT.abi, signer);
-    const data = await contract.fetchMyFiles();
-    console.log("Data fetch from smart contract is", data.length);
-    setfme(data.length);
-
-    const connection2 = await web3Modal.connect();
-    const provider2 = new ethers.providers.Web3Provider(connection2);
-    const signer2 = provider2.getSigner();
-    const contract2 = new ethers.Contract(fileShareAddress, fileNFT.abi, signer2);
-    const data2 = await contract2.fetchAllStorageItems();
-    console.log("Data fetch from smart contract is", data2.length);
-    setfall(data2.length);
-    
-    /*
-    *  map over items returned from smart contract and format
-    *  them as well as fetch their token metadata
-    */
-    const items = await Promise.all(data.map(async i => {
-      const tokenUri = await contract.tokenURI(i.tokenId);
-      console.log("token Uri is ", tokenUri);
-      const httpUri = getIPFSGatewayURL(tokenUri);
-      console.log("Http Uri is ", httpUri);
-      const meta = await axios.get(httpUri);
-      // const privatefile = (i.filePrivate).toString; 
-
-      const item = {
-        tokenId: i.tokenId.toNumber(),
-        image: getIPFSGatewayURL(meta.data.image),
-        name: meta.data.name,
-        description: meta.data.description,
-        sharelink: getIPFSGatewayURL(meta.data.image),
-      };
-      console.log("item returned is ", item);
-      return item;
-    }));
-    setNfts(items);
-    setLoadingState("loaded");
-  }
-
-  const getIPFSGatewayURL = (ipfsURL) => {
-    const urlArray = ipfsURL.split("/");
-    const ipfsGateWayURL = `https://${urlArray[2]}.ipfs.nftstorage.link/${urlArray[3]}`;
-    return ipfsGateWayURL;
-  };
-
 
   return (
     <Box as="section"  sx={styles.section}>

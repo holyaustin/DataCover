@@ -65,14 +65,14 @@ export default function Header() {
           <Link href="/dashboard">
           <a>Dashboard</a>
           </Link>
-          <Link href="/addfile">
-          <a>Add File</a>
+          <Link href="/dataowner">
+          <a>Data-Owners</a>
           </Link>
-          <Link href="/addfolder">
-          <a>Add Folder</a>
+          <Link href="/sp">
+          <a>Storage-Providers</a>
           </Link>
-          <Link href="/fileshare">
-          <a>P2P FileShare </a>
+          <Link href="/admin">
+          <a>House-Keeping </a>
           </Link>
           <Link href="https://web3chat-datacover.vercel.app/" target="_blank">
           <a>Chat </a>
