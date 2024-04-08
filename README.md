@@ -1,4 +1,5 @@
-# Project Name: Data Insurance
+# Project Name: Data Cover Insuranace
+![datacover](./public/images/datacovernew.png)
 
 ### Introduction:
 Data Insurance on Decentralized Storage using Filecoin FEVM is a pioneering project aimed at revolutionizing the insurance industry by leveraging decentralized storage solutions provided by Filecoin's Filecoin EVM (FEVM). This project seeks to offer innovative insurance products tailored to the unique needs of businesses and individuals utilizing decentralized storage for their valuable data assets. By harnessing the security, reliability, and transparency of decentralized storage on Filecoin FEVM, Data Insurance aims to provide unparalleled protection against data loss, theft, and corruption.
@@ -32,8 +33,6 @@ Decentralized Identity: Integration of decentralized identity solutions for user
 The Data Insurance platform was developed as a decentralized application (dApp) accessible through web and mobile interfaces. Smart contracts was deployed on Filecoin FEVM (Callibration Testnet) to automate insurance processes, including policy issuance, premium payments, and claims processing. The platform's frontend will provide a user-friendly interface for policyholders to purchase insurance, file claims, and access support services. Advanced encryption algorithms will ensure the security and privacy of user data and transactions.
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/zeit/next.js/tree/canary/packages/create-next-app).
-
-![datacover](./public/images/datacovernew.png)
 
 ## Introduction
 
