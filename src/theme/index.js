@@ -21,7 +21,7 @@ export default {
         background: '#000',
         primary: '#5B2B9D',
         secondary: '#09c',
-        muted: '#fff',
+        muted: '#F9FAFC',
       },
     },
   },
