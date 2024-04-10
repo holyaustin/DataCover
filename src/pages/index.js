@@ -1,5 +1,5 @@
 import React from 'react';
-import { ThemeUIProvider } from 'theme-ui';
+import { ThemeProvider } from 'theme-ui';
 import theme from 'theme';
 import SEO from 'components/seo';
 import Layout from 'components/layout';
@@ -17,7 +17,7 @@ import Pricing from 'sections/pricing';
 
 export default function IndexPage() {
   return (
-    <ThemeUIProvider theme={theme}>
+    <ThemeProvider theme={theme}>
       <Layout>
         <SEO
           title="Data Cover - FVM-based Data Insurance Service "
@@ -39,6 +39,6 @@ export default function IndexPage() {
         <Support />
    */}
       </Layout>
-    </ThemeUIProvider>
+    </ThemeProvider>
   );
 }

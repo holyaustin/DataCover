@@ -27,7 +27,7 @@ export default function Support() {
 
 const styles = {
   section: {
-    
+    backgroundColor: '#fff',
     pt: [8, null, null, null, 10, 14],
     pb: [0],
   },

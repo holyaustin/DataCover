@@ -51,7 +51,7 @@ export default CustomerSupport;
 
 const styles = {
   section: {
-    
+    backgroundColor: '#fff',
     pt: [8, null, null, 6, null, 14, 16],
     pb: [null, null, null, 8, 0],
   },

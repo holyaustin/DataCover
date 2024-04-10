@@ -64,6 +64,7 @@ export default Faq;
 
 const styles = {
   section: {
+    backgroundColor: 'muted',
     pt: [8, null, null, null, 10, 14],
     pb: [null, null, null, null, null, null, 10, 6],
   },

@@ -48,7 +48,7 @@ const Services = () => {
           slogan="Ideal solutions for you"
           title="Comprehensive Risk Coverage for Data Owners and Storage Providers (SPs)!"
         />
-        <Box sx={styles.grid}>
+        <Box sx={styles.grid} style={{fontWeight: 'bold', color: "purple", textAlign: "justify"}}>
           {services.map((service, i) => (
             <Service key={i} service={service} />
           ))}
@@ -62,13 +62,17 @@ export default Services;
 
 const styles = {
   section: {
+    backgroundColor: 'muted',
     pt: [8, null, null, null, 10, 12],
     pb: [12, null, null, null, null, 15],
   },
   grid: {
+
     gap: [3, null, null, 4],
     display: 'grid',
     justifyContent: 'center',
+    fontWeight: 700,
+    fontSize: [8, null, null, 10, 16, 24],
     gridTemplateColumns: [
       'repeat(2, 1fr)',
       null,

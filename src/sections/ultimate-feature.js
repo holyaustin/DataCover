@@ -86,6 +86,7 @@ const styles = {
     },
   },
   features: {
+    color: 'black',
     gap: [35, null, null, 40, '50px 30px', 60],
     display: ['grid', 'grid'],
     maxWidth: 1030,
@@ -100,6 +101,7 @@ const styles = {
     '.feature-item': {
       display: ['block'],
       textAlign: 'center',
+      color: 'black',
       maxWidth: [290, 260, null, 280, 'none'],
       m: ['0 auto', '0 auto', '0 auto', '0 auto', '0 auto', 0],
       figure: {

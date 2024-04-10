@@ -16,10 +16,12 @@ export default Service;
 const styles = {
   service: {
     border: (theme) => `1px solid ${theme.colors.borderColor}`,
-    borderRadius: 5,
+    borderRadius: 7,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
+    fontSize: [1, null, null, '28px'],
+    fontWeight: 900,
     minHeight: [107, null, null, 130],
     textAlign: 'center',
     transition: 'all 0.3s ease-in-out 0s',

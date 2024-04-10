@@ -27,7 +27,7 @@ const Banner = () => {
         <Box sx={styles.grid}>
           <Box as="form" sx={styles.domainCard}>
             <Heading style={{fontWeight: 'bold', color: "purple", textAlign: "justify"}}>Insurance Cover</Heading>
-            <div style={{fontSize: '22px', marginRight: '0.5rem', fontWeight: 'bold', textAlign: "justify"}}>
+            <div style={{fontSize: '22px', marginRight: '0.5rem', color: "black", fontWeight: 'bold', textAlign: "justify"}}>
               <p>
               Data Insurance Cover - the smart choice for proactive risk management. With our flexible policies and reliable support, you can rest easy knowing that your data is protected against unforeseen events. Get Data Insurance Cover and secure your peace of mind today!.
               </p>

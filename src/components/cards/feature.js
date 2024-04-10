@@ -28,13 +28,14 @@ const styles = {
     h3: {
       fontSize: '18px',
       lineHeight: 1.28,
-      color: 'heading',
+      color: 'primary',
+      fontWeight: 700,
       marginBottom: '20px',
     },
     p: {
       fontSize: 16,
       lineHeight: 1.88,
-      color: 'text',
+      color: 'heading',
     },
     a: {
       mt: [3],
